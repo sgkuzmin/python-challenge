@@ -35,7 +35,7 @@ with open(ScriptFolderPath +'/Resources/budget_data.csv', 'r') as f:
     
     differences= [ProfitLoss[n]-ProfitLoss[n-1] for n in range(1,TotalMonths)] #Calculate the changes in "Profit/Losses" over the entire period
 
-    MeanDiff=round(statistics.mean(differences),2) #find the average of those changes
+    MeanDiff=statistics.mean(differences) #find the average of those changes
     MaxProfit=max(differences) #The greatest increase in profits (date and amount) over the entire period
     MaxProfitDate=Dates[differences.index(MaxProfit)+1]
     MaxLoss=min(differences) #The greatest decrease in profits (date and amount) over the entire period
@@ -46,7 +46,7 @@ def printAnalysis(f): # format printout of the analysis
   print("------------------",file=f)
   print(f"Total Months: {TotalMonths}",file=f)
   print(f"Total ${Total}",file=f)
-  print(f"Average Change: ${MeanDiff}",file=f)
+  print(f"Average Change: ${MeanDiff:.2f}",file=f)
   print(f"Greatest Increase in Profits: {MaxProfitDate} (${MaxProfit})",file=f)
   print(f"Greatest Decrease in Profits: {MaxtLossDate} (${MaxLoss})",file=f)
 
